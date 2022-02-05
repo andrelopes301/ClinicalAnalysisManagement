@@ -1,0 +1,78 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Registo";
+}
+
+<br>
+<h1>Registar Conta</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+<div class="container">  
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+              <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-6">
+                  <div class="form-group">
+                <label asp-for="Input.Nome" class="control-label"></label>
+                <input asp-for="Input.Nome" class="form-control" />
+                <span asp-validation-for="Input.Nome" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.RoleID"></label>
+                    <select asp-for="Input.RoleID" asp-items= "@LabTestesOnline.Roles.RoleUtils.RegistSelectList" class="form-control" ></select>
+                    <span asp-validation-for="Input.RoleID" class="text-danger"></span>
+                </div>
+            </div>
+           <div class="col-md-6">
+                <div class="form-group">
+                <label asp-for="Input.Sexo">Sexo</label>
+                <select asp-for="Input.Sexo" asp-items= "ViewBag.SexoLista" class="form-control" ></select>
+                <span asp-validation-for="Input.Sexo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.DataNascimento" class="control-label"></label>
+                <input asp-for="Input.DataNascimento" class="form-control" />
+                <span asp-validation-for="Input.DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Localidade" class="control-label"></label>
+                <input asp-for="Input.Localidade" class="form-control" />
+                <span asp-validation-for="Input.Localidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Morada" class="control-label"></label>
+                <input asp-for="Input.Morada" class="form-control" />
+                <span asp-validation-for="Input.Morada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Contacto" class="control-label"></label>
+                <input asp-for="Input.Contacto" class="form-control" />
+                <span asp-validation-for="Input.Contacto" class="text-danger"></span>
+            </div>
+           </div>
+      </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <button type="submit" class="btn btn-primary">Registar</button>
+        </form>    
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

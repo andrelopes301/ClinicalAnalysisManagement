@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+
+@if(User.IsInRole("Gestor")){
+
+    <h1> Gestor(id = @ViewBag.Id)</h1>
+
+}
+
+@if(User.IsInRole("Cliente")){
+    
+    <h1> Cliente(id = @ViewBag.Id)</h1> 
+}
+
+@if(User.IsInRole("Admin")){
+    
+    <h1> Admin(id = @ViewBag.Id)</h1> 
+}
+

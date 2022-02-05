@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "CheckList";
+}
+
+<h1>CheckList</h1>
+
+@model LabTestesOnline.Models.Teste
+
+@{
+    
+    ViewData["Title"] = "Efetuar Análise";
+}
+
+
+
+<hr />
+
+@if (User.IsInRole("Tecnico"))
+{
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Checklist">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="TipoTeste">Tipo de Teste</label>
+                <input readonly asp-for="TipoTeste" class="form-control"asp-items= "ViewBag.TiposTestes" disable />
+                <span asp-validation-for="TipoTeste" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataInicio" class="control-label">Data de Início</label>
+                <input readonly asp-for="DataInicio" class="form-control" />
+                <span asp-validation-for="DataInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataFinal" class="control-label">Data Final</label>
+                <input readonly asp-for="DataFinal" class="form-control" />
+                <span asp-validation-for="DataFinal" class="text-danger"></span>
+            </div>
+            <input asp-for="CentroAnaliseId" class="form-control" hidden />
+            <input type="checkbox" asp-for="Estado" class="form-control" value="true" hidden />
+            <div class="form-group">
+                <label asp-for="TecnicoResponsavelId" class="control-label">Técnico Responsável</label>
+                <input readonly asp-for="TecnicoResponsavelId" class="form-control"asp-items= "ViewBag.TecnicoResponsavelId"/>
+                <input class="form-control"asp-items= "ViewBag.TecnicoResponsavelNome" hidden />
+                
+                <span asp-validation-for="TecnicoResponsavelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClienteId" class="control-label">Cliente</label>
+                <input readonly asp-for="ClienteId" class="form-control"asp-items= "ViewBag.ClienteId" hidden />
+                <input readonly class="form-control"asp-items= "ViewBag.ClienteNome" disable />
+                
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+            
+            @foreach (var item in ViewBag.Procedimentos as IList<Procedimento>)
+           {
+               <div class="form-group">
+                   @item.TipoProcedimento
+                    
+               </div>
+               <div class="form-group">
+                   <input type="checkbox" asp-for="@item.isChecked" value="@item.isChecked" />
+               </div>
+               
+           }
+            <div class="form-group">
+                <label asp-for="Resultado" class="control-label">Resultado</label>
+                <select asp-for="Resultado" class="form-control" asp-items="ViewBag.Resultados"></select>
+                <span asp-validation-for="Resultado" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Guardar Alterações" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+}
+
+
+

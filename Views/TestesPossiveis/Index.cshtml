@@ -1,0 +1,121 @@
+﻿@model LabTestesOnline.ViewModels.TestesPossiveisViewModel
+
+@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+
+@{
+    ViewData["Title"] = "Index";
+    var dados = (IPagedList)Model.TestesPossiveis;
+}
+
+<!-- import the included stylesheet for some (very basic) default styling -->
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+@{
+    ViewData["Title"] = "Testes Possíveis";
+}
+
+<br>
+<h1>Testes Possíveis</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+
+<form asp-controller="TestesPossiveis" asp-action="Index" method="get">
+    <div class="form-inline">
+
+        <label>Filtrar por localidade:</label>
+        &nbsp
+        <div class="form-group">
+            <select name="localidade" asp-items="@Model.LocalidadesSelectListItems" class="form-control"></select>
+        </div>
+        &nbsp
+        &nbsp
+        <div class="form-group">
+           <button type="submit" class="btn btn-dark">Filtrar</button>
+        </div>
+         <div class="form-group">
+          <a class="btn btn-secondary  ml-2" asp-area="" asp-controller="TestesPossiveis"  asp-action="Index">Reset</a>
+        </div>  
+
+    </div>
+    <input type="hidden" name="search" id="search" value="@Model.Procura" />
+</form>
+
+
+<br>
+<br>
+
+<div class="table-responsive">
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Tipo de Teste
+            </th>
+            <th>
+                Centro de Análise
+            </th>
+              <th>
+                Localidade
+            </th>
+            @if(User.IsInRole("Gestor") || User.IsInRole("Admin")){
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TestesPossiveis) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoTeste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CentroAnalise.Nome)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.CentroAnalise.Localidade)
+            </td>
+
+            @if(User.IsInRole("Gestor") || User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+                    </td>
+              }
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+ 
+    <div>
+        @(Html.Pager(dados)
+        .Url(page => Url.Action("Index", new { localidade = @Model.Localidade, search = @Model.Procura,page = page }))
+        .DisplayLinkToFirstPage(PagedListDisplayMode.IfNeeded)
+        .DisplayLinkToLastPage(PagedListDisplayMode.IfNeeded)
+        .Build())
+    </div>
+
+    @if (User.IsInRole("Gestor") || User.IsInRole("Admin"))
+    {
+        <div class="form-group">
+             <button type="submit" class="btn btn-dark">
+               <a class="text-decoration-none text-white" asp-action="Create">Adicionar Teste Possível</a>
+                 </button>
+        </div>
+
+}
+
+
+
+
+

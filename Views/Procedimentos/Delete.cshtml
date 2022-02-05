@@ -1,0 +1,31 @@
+﻿@model LabTestesOnline.Models.Procedimento
+
+@{
+    ViewData["Title"] = "Remover";
+}
+
+<h1>Remover Procedimento</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+           Procedimento
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoProcedimento)
+        </dd>
+        <dt class = "col-sm-2">
+           Tipo de Teste
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TestesPossiveis.TipoTeste)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Voltar Atrás</a>
+    </form>
+</div>

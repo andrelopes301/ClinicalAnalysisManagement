@@ -1,0 +1,88 @@
+﻿@model IEnumerable<LabTestesOnline.Models.Tecnico>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br>
+<h1>Técnicos</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+<div class="table-responsive">
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                  Data de Nascimento
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contacto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.CentroAnaliseId)
+            </th>
+             <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td >
+               @String.Format("{0: yyyy/MM/dd}", item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Morada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.CentroAnaliseId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+<br>
+
+
+  <div class="form-group">
+             <button type="submit" class="btn btn-dark">
+               <a class="text-decoration-none text-white" asp-action="Create">Adicionar Técnico</a>
+                 </button>
+ </div>

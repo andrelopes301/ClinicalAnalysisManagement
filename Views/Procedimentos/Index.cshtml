@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LabTestesOnline.Models.Procedimento>
+
+@{
+    ViewData["Title"] = "IndeProcedimentox";
+}
+
+<h1>Procedimento</h1>
+
+<p>
+    <a asp-action="Create">Adicionar Procedimento</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Procedimento
+            </th>
+            <th>
+                Tipo de teste
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoProcedimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestesPossiveis.TipoTeste)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

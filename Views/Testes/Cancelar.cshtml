@@ -1,0 +1,60 @@
+﻿@model LabTestesOnline.Models.Teste
+
+@{
+    ViewData["Title"] = "Cancelar";
+}
+
+<br>
+<h1>Cancelar</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+ <div>
+    <div class="col-md-8">
+        <form asp-action="Agendar">
+            <input type="hidden" asp-for="Id"/>
+
+ <dl class="row">
+        <dt class = "col-sm-4">
+            Tipo de Teste
+        </dt>
+        <dd class = "col-sm-8">
+         @Html.DisplayFor(modelItem => Model.TipoTeste)
+        </dd>
+        <dt class = "col-sm-4">
+            Data de Início
+        </dt>
+        <dd class = "col-sm-8">
+           @Html.DisplayFor(modelItem => Model.DataInicio)
+        </dd>
+        <dt class = "col-sm-4">
+            Data Final
+        </dt>
+        <dd class = "col-sm-8">
+              @Html.DisplayFor(modelItem => Model.DataFinal)
+        </dd>
+</dl>     
+
+    <input type="hidden" asp-for="TipoTeste" value='@ViewData["TipoTeste"]' />
+    <input type="hidden" asp-for="DataInicio" value = '@ViewData["DataInicio"]' />
+    <input type="hidden" asp-for="DataFinal" value = '@ViewData["DataFinal"]'/> 
+    <input type="hidden" asp-for="ClienteId"value= null />
+    <input type="hidden" asp-for="CentroAnaliseId" value = '@ViewData["CentroAnaliseId"]' />
+    <input type="hidden" asp-for="TecnicoResponsavelId" value = '@ViewData["TecnicoResponsavelId"]' /> 
+    <input type="hidden" asp-for="Estado"  value="false"/>
+
+<div class="row">
+
+        <div class="form-group mr-5">
+            @if(ViewBag.Cancelar == true){       
+                <input disabled type="submit" value="Cancelar Agendamento" class="btn btn-danger" />
+            }else{
+                <input type="submit" value="Cancelar Agendamento" class="btn btn-danger" />
+            }
+        </div>
+         <div>
+             <a  asp-controller="Home" asp-action="Index" class="btn btn-dark">Voltar Atrás</a>
+        </div>
+        </form>    
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model LabTestesOnline.Models.Procedimento
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar Procedimento</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="TipoProcedimento" class="control-label">Procedimento</label>
+                <textarea asp-for="TipoProcedimento" class="form-control"  maxlength="250" style="resize: none;"> </textarea>
+                <span asp-validation-for="TipoProcedimento" class="text-danger"></span>
+            </div>
+             <input type="hidden" class="form-check-input" asp-for="isChecked" /> 
+
+            <div class="form-group">
+                <label asp-for="TestesPossiveisId" class="control-label">Tipo de Teste</label>
+                <select asp-for="TestesPossiveisId" class ="form-control" asp-items="ViewBag.TestesPossiveis"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar Atrás</a>
+</div>

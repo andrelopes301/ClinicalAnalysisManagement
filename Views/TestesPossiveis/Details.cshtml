@@ -1,0 +1,31 @@
+﻿@model LabTestesOnline.Models.TestesPossiveis
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<br>
+<h1>Detalhes do Teste Possível</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+         Tipo de Teste
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoTeste)
+        </dd>
+        <dt class = "col-sm-2">
+            Centro de Análise
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CentroAnalise.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar Atrás</a>
+</div>

@@ -1,0 +1,128 @@
+﻿@*@model IEnumerable<LabTestesOnline.Models.CentroAnalise>*@
+
+
+@model LabTestesOnline.ViewModels.CentrosAnalisesViewModel
+
+@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+
+@{
+    ViewData["Title"] = "Index";
+    var dados = (IPagedList)Model.CentrosAnalises;
+}
+
+<!-- import the included stylesheet for some (very basic) default styling -->
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+
+
+
+@{
+    ViewData["Title"] = "Centro de Análise";
+}
+
+<br>
+<h1>Centros de Análise</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+<div class="table-responsive">
+    
+    <table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+               Nome
+            </th>
+            <th>
+              Localidade
+            </th>
+            <th>
+               Nº Limite de Testes
+            </th>
+            <th  style="text-align: center;">
+               Hora de Abertura
+            </th>
+            <th  style="text-align: center;">
+              Hora de Encerramento
+            </th >
+             @if (User.IsInRole("Admin"))
+            {
+                    <th>
+                        GestorId
+                    </th>
+                 @*   <th>
+                        Gestor Responsável
+                     </th>*@
+            }
+            <th></th>       
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in  Model.CentrosAnalises) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumLimiteTestes)
+            </td>
+            <td  style="text-align: center;">
+                  @String.Format("{0: HH:mm}", item.HorarioAbertura)
+            </td>
+            <td style="text-align: center;">
+                  @String.Format("{0: HH:mm}", item.HorarioEncerramento)
+            </td>
+                @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GestorId)
+                        </td>
+
+                       @* <td>
+                            @Html.DisplayFor(modelItem => item.Gestor.Nome)
+                        </td>*@
+            }
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+ 
+    <div>
+        @(Html.Pager(dados)
+        .Url(page => Url.Action("Index", new { page = page }))
+        .DisplayLinkToFirstPage(PagedListDisplayMode.IfNeeded)
+        .DisplayLinkToLastPage(PagedListDisplayMode.IfNeeded)
+        .Build())
+    </div>
+
+
+
+
+<br>
+  <div class="form-group">
+             <button type="submit" class="btn btn-dark">
+               <a class="text-decoration-none text-white" asp-action="Adicionar">Adicionar Centro</a>
+               </button>
+ </div>

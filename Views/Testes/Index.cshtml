@@ -1,0 +1,196 @@
+﻿@model IEnumerable<LabTestesOnline.Models.Teste>
+
+@{
+    ViewData["Title"] = "Testes";
+}
+
+<br>
+<h1>Testes</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+
+@if (User.IsInRole("Tecnico")){
+
+
+
+    <div class="container row col-md-12 col-lg-12 mb-5 ">
+       <form class="d-flex"  asp-action="Index" asp-controller="Testes" method="get">
+       <input class="form-control col-md-8 col-lg-8 col-sm-8 mr-3 " style="text-align: left;}" type="search" placeholder="Cliente/Data?" aria-label="Search" name="search">
+       <button class="btn btn-dark  mr-4" type="submit">Pesquisa</button>
+       </form>
+       <form  asp-action="Index" asp-controller="Testes" method="get">
+       <input type="hidden" name="search">
+       <button class="btn btn-secondary  mr-4" type="submit">Reset</button>
+       </form>
+
+     </div>
+
+}
+
+
+
+@if (User.IsInRole("Admin"))
+{
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+            <tr>
+                <th>
+                   Tipo de Teste
+                </th>
+                <th>
+                  ClienteID
+                </th>
+                 <th>
+                   Cliente
+                </th>
+                <th>
+                  Data de Início
+                </th>
+                <th>
+                  Data Final
+                </th>        
+                <th>
+                   Centro de Análise
+                </th>
+                <th>
+                   Técnico Responsável
+                </th> 
+                <th>
+                    Resultado
+                </th>          
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoTeste)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                    </td>
+                    <td>
+                       @String.Format("{0:yyyy-MM-dd | HH:mm}", item.DataInicio)
+                    </td>
+                    <td>
+                      @String.Format("{0:HH:mm | yyyy-MM-dd}", item.DataFinal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentroAnalise.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TecnicoResponsavel.Id)
+                    </td>
+               
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Resultado)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<br>
+  <div class="form-group">
+             <button type="submit" class="btn btn-dark">
+               <a class="text-decoration-none text-white" asp-action="Create">Adicionar Teste</a>
+                 </button>
+ </div>
+
+
+
+}else if (User.IsInRole("Tecnico"))
+{
+
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+            <tr>
+                <th>
+                   Tipo de Teste
+                </th>
+                <th>
+                  Id do Cliente
+                </th>
+                 <th>
+                   Cliente
+                </th>
+                <th>
+                  Data de Início
+                </th>
+                <th>
+                  Data Final
+                </th>        
+                <th>
+                   Centro de Análise
+                </th>
+                <th>
+                   Resultado
+                </th>         
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoTeste)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Id)
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                    </td>
+                    <td>
+                      @String.Format("{0:yyyy-MM-dd | HH:mm}", item.DataInicio)
+                    </td>
+                    <td>
+                      @String.Format("{0:HH:mm | yyyy-MM-dd}", item.DataFinal)
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.CentroAnaliseId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Resultado)
+                    </td>
+                  
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<br>
+  <div class="form-group">
+             <button type="submit" class="btn btn-dark">
+               <a class="text-decoration-none text-white" asp-action="Create">Adicionar Teste</a>
+                 </button>
+ </div>
+
+
+
+
+}
+

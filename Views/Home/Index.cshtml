@@ -1,0 +1,298 @@
+﻿@model LabTestesOnline.ViewModels.TestesPossiveisViewModel
+
+@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+
+@{
+    ViewData["Title"] = "Home";
+    var dados = (IPagedList)Model.TestesPossiveis;
+}
+
+<!-- import the included stylesheet for some (very basic) default styling -->
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+
+@if(User.IsInRole("Admin")){
+
+
+<div class="my-5 py-4">
+  
+    <div class=" justify-content-center row mt-3" style="text-align:center">
+
+      <div class="col-md-4 col-sm-4 mb-3" >
+            <a target="_self"  class="text-decoration-none" asp-area="" asp-controller="CentroAnalises" asp-action="Index"  style="color: #FFF;">
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Laboratórios</p>
+                </div>
+            </a>
+        </div>
+
+    <div class="col-md-4 col-sm-4 mb-3">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Gestores" asp-action="Index"  style="color: #FFF;">
+               <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">  
+                   <p style="font-size: 1.3rem; font-weight:bold">Gestores</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+        <div class=" justify-content-center row" style="text-align:center">
+
+      <div class="col-md-4 col-sm-4 mb-3">
+            <a target="_self"  class="text-decoration-none" asp-area="" asp-controller="Tecnicos" asp-action="Index"  style="color: #FFF;">            
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Técnicos</p>
+                </div>
+            </a>
+        </div>
+
+    <div class="col-md-4 col-sm-4 mb-3">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Clientes" asp-action="Index"  style="color: #FFF;">
+             
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Clientes</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+        <div class=" justify-content-center row  mb-3" style="text-align:center">
+
+      <div class="col-md-4 col-sm-4 mb-3">
+            <a target="_self"  class="text-decoration-none" asp-area="" asp-controller="Testes" asp-action="Index"  style="color: #FFF;">
+          
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Testes</p>
+                </div>
+            </a>
+        </div>
+
+    <div class="col-md-4 col-sm-4 mb-3">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="TestesPossiveis" asp-action="Index"  style="color: #FFF;">
+                <div class="col-sm-12  py-4 mb-5" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">   
+                    <p style="font-size: 1.3rem; font-weight:bold">Testes Possíveis</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+}else if (User.IsInRole("Tecnico"))
+{
+    
+<div class="my-5 py-4">
+    <div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6 ">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Testes" asp-action="Index"  style="color: #FFF;">
+           
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">  
+                    <p style="font-size: 1.3rem; font-weight:bold">Testes Agendados Com Marcação</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6 ">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Testes" asp-action="Agendados"  style="color: #FFF;">
+               
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Testes Agendados Sem Marcação</p>
+                </div>
+            </a>
+        </div>
+</div>
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6">
+            <a target="_self"  class="text-decoration-none" asp-area="" asp-controller="Testes" asp-action="Create"  style="color: #FFF;">
+               
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Agendar Teste</p>
+                </div>
+            </a>
+        </div>
+</div>
+</div>
+
+}else if (User.IsInRole("Gestor")){
+    
+
+<div class="my-5 py-4">
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6 " >
+            <a target="_self" asp-area="" class="text-decoration-none" asp-controller="TestesPossiveis" asp-action="Index"  style="color: #FFF;">
+             
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Tipos de Testes Possíveis</p>
+                </div>
+            </a>
+        </div>
+</div>
+
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6">
+            <a target="_self"  class="text-decoration-none" asp-area="" asp-controller="CentroAnalises" asp-action="Index"  style="color: #FFF;">
+              
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Centros de Análises</p>
+                </div>
+            </a>
+        </div>
+</div>
+
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6 ">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Tecnicos" asp-action="Index"  style="color: #FFF;">
+              
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Técnicos</p>
+                </div>
+            </a>
+        </div>
+</div>
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Procedimentos" asp-action="Index"  style="color: #FFF;">
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">   
+                    <p style="font-size: 1.3rem; font-weight:bold">Procedimentos de Teste</p>
+                </div>
+            </a>
+        </div>
+</div>
+</div>
+
+} else if(User.IsInRole("Cliente")){
+
+<div class="my-5 py-4">
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6 " >
+            <a target="_self" asp-area="" class="text-decoration-none" asp-controller="TestesPossiveis" asp-action="Index"  style="color: #FFF;">
+             
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Tipos de Testes Possíveis</p>
+                </div>
+            </a>
+        </div>
+</div>
+
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6">
+            <a target="_self"  class="text-decoration-none" asp-area="" asp-controller="Testes" asp-action="PossiveisAgendamentos"  style="color: #FFF;">
+             
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Agendar um Teste</p>
+                </div>
+            </a>
+        </div>
+</div>
+
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6 ">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Testes" asp-action="Agendados"  style="color: #FFF;">
+               
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Testes Agendados</p>
+                </div>
+            </a>
+        </div>
+</div>
+<div class="container col-md-12 justify-content-center row mt-3 mb-3" style="text-align:center">
+        <div class="col-md-6 col-sm-6 ">
+            <a target="_self" class="text-decoration-none" asp-area="" asp-controller="Testes" asp-action="Resultados"  style="color: #FFF;">
+               
+                <div class="col-sm-12  py-4" onMouseOver="this.style.backgroundColor='#223950'" onMouseOut="this.style.backgroundColor='#0072B0'"  style="background: #0072B0;">
+                <p style="font-size: 1.3rem; font-weight:bold">Resultados de Testes</p>
+                </div>
+            </a>
+        </div>
+</div>
+</div>
+}
+else
+{
+
+
+<br>
+<h1>Testes Possíveis</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+
+<form asp-action="Index" method="get">
+    <div class="form-inline">
+
+        <label>Filtrar por localidade:</label>
+        &nbsp
+        <div class="form-group">
+            <select name="localidade" asp-items="@Model.LocalidadesSelectListItems" class="form-control"></select>
+        </div>
+        &nbsp
+        &nbsp
+        <div class="form-group">
+           <button type="submit" class="btn btn-dark">Filtrar</button>
+        </div>
+         <div class="form-group">
+          <a class="btn btn-secondary  ml-2" asp-area="" asp-controller="Home"  asp-action="Index">Reset</a>
+        </div>  
+   
+    </div> 
+</form>
+       
+
+<br>
+<br>
+
+<div class="table-responsive">
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Tipo de Teste
+            </th>
+            <th>
+                Centro de Análise
+            </th>
+              <th>
+                Localidade
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.TestesPossiveis) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoTeste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CentroAnalise.Nome)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.CentroAnalise.Localidade)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+ 
+    <div>
+        @(Html.Pager(dados)
+        .Url(page => Url.Action("Index", new { localidade = @Model.Localidade, page = page }))
+        .DisplayLinkToFirstPage(PagedListDisplayMode.IfNeeded)
+        .DisplayLinkToLastPage(PagedListDisplayMode.IfNeeded)
+        .Build())
+    </div>
+
+
+
+
+
+
+}

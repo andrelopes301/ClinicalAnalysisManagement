@@ -1,0 +1,60 @@
+﻿@model LabTestesOnline.Models.CentroAnalise
+
+@{
+    ViewData["Title"] = "Centro de Análise";
+}
+<br>
+<h1>Detalhes do Centro de Análise</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Localidade)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Localidade)
+        </dd>
+        <dt class = "col-sm-4">
+            Nº Limite de Testes
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.NumLimiteTestes)
+        </dd>
+        <dt class = "col-sm-4">
+            Hora de Abertura
+        </dt>
+        <dd class = "col-sm-8">
+             @Html.DisplayFor(model => model.HorarioAbertura.Hour):@Html.DisplayFor(model => model.HorarioAbertura.Minute)
+        </dd>
+        <dt class = "col-sm-4">
+              Hora de Encerramento
+        </dt>
+        <dd class = "col-sm-8">
+             @Html.DisplayFor(model => model.HorarioEncerramento.Hour):@Html.DisplayFor(model => model.HorarioEncerramento.Minute)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Gestor)
+        </dt>
+         <dd class = "col-sm-8">
+             @Html.DisplayFor(model => model.Gestor.Nome)
+        </dd>
+        <dt class = "col-sm-4">
+           GestorID
+        </dt>
+         <dd class = "col-sm-8">
+             @Html.DisplayFor(model => model.Gestor.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar Atrás</a>
+</div>

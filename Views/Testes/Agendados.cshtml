@@ -1,0 +1,124 @@
+﻿@model IEnumerable<LabTestesOnline.Models.Teste>
+
+@{
+    ViewData["Title"] = "Agendados";
+}
+
+<br>
+<h1>Testes Agendados</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+
+                
+
+
+
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+            <tr>
+
+
+                 <th>
+                   Tipo de Teste
+                </th>
+                <th>
+                  Id do Cliente
+                </th>
+                 <th>
+                   Cliente
+                </th>
+                <th>
+                  Data de Início
+                </th>
+                <th>
+                  Data Final
+                </th>       
+                
+              @if (!User.IsInRole("Tecnico")){
+                <th>
+                   CentroAnaliseId
+                </th>
+                  <th>
+                   Centro de Análise
+                </th>
+                  <th>
+                   Técnico Responsável
+                </th>
+                }
+                <th>
+                   Resultado
+                </th>         
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                   <td>
+                        @Html.DisplayFor(modelItem => item.TipoTeste)
+                    </td>
+
+
+                    @if (!User.IsInRole("Cliente"))
+                    {
+                         <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Id)
+                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                        </td>
+                     }
+
+                     <td>               
+                        @String.Format("{0:yyyy-MM-dd | HH:mm}", item.DataInicio)
+                    </td>
+                    <td>
+                       @String.Format("{0:HH:mm | yyyy-MM-dd}", item.DataFinal)
+                    </td>
+                      @if (!User.IsInRole("Tecnico"))
+                    {
+                     <td>
+                        @Html.DisplayFor(modelItem => item.CentroAnaliseId)
+                    </td>
+             
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CentroAnalise.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TecnicoResponsavel.Nome)
+                        </td>
+
+                    }
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Resultado)
+                    </td>
+                    
+
+                    <td>
+                        <a class="btn btn-danger" asp-action="Cancelar" asp-route-id="@item.Id">Cancelar</a>
+
+                        @if (!User.IsInRole("Cliente"))
+                        {
+                           
+
+                            if(item.ClienteId != null){
+                                 <a class="btn btn-info" asp-action="CheckList" asp-route-id="@item.Id">Efetuar Análise</a>
+
+                            }else{
+                                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar Teste</a>
+                            }
+                              
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

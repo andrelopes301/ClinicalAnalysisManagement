@@ -1,0 +1,17 @@
+Dados de acesso à aplicação web:
+
+Utilizador:
+	admin@gmail.com
+	Admin_123
+
+Gestor:
+	gestor@gmail.com
+	Gestor_123
+
+Cliente:
+	cliente@gmail.com
+	Cliente_123
+
+Técnico:
+	tecnico@gmail.com
+	Tecnico_123

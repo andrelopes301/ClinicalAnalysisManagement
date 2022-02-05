@@ -1,0 +1,62 @@
+﻿
+@model IEnumerable<LabTestesOnline.Models.Teste>
+
+@{
+    ViewData["Title"] = "Agendamentos";
+}
+
+<br>
+<h1>Agendamentos Possíveis</h1>
+<hr style="border: 1px solid black;">
+<br>
+
+
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+            <tr>
+                 <th>
+                   Tipo de Teste
+                </th>
+                <th>
+                  Data de Início
+                </th>
+                <th>
+                  Data Final
+                </th>        
+                <th>
+                    Centro de Análise
+                </th>
+                <th>
+                   Técnico Responsável
+                </th>         
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                      <td>
+                        @Html.DisplayFor(modelItem => item.TipoTeste)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataFinal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentroAnalise.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TecnicoResponsavel.Nome)
+                    </td>
+                    <td>
+                        <a asp-action="Agendar" asp-route-id="@item.Id">Agendar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
